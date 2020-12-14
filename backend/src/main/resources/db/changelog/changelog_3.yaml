@@ -18,3 +18,8 @@ databaseChangeLog:
                   type: VARCHAR
                   constraints:
                     nullable: false
+              - column:
+                  name: count
+                  type: INTEGER
+                  constraints:
+                    nullable: false

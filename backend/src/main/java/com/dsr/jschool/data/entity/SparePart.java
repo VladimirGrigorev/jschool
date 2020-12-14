@@ -13,4 +13,5 @@ public class SparePart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private Integer count;
 }
