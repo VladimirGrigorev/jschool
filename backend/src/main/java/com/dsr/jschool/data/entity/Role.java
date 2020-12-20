@@ -7,15 +7,14 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "spare_part", schema = "public")
-public class SparePart {
+@Table(name = "role", schema = "public")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Integer count;
 
-    @ManyToMany(mappedBy = "spareParts")
-    private List<StoreBranch> storeBranches;
+    @ManyToMany(mappedBy = "roles")
+    private List<User> users;
 }

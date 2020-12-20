@@ -1,6 +1,7 @@
-id, name
-1,Nate
-2,Brigette
-3,Katie
-4,Lauren
-5,Jackson
+id, name, password
+1,Admin,password
+2,Brigette,password
+3,Katie,password
+4,Lauren,password
+5,Jackson,password
+6,Nate,password
