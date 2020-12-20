@@ -1,4 +1,4 @@
-package com.dsr.jschool.repository;
+package com.dsr.jschool.data.repository;
 
 import com.dsr.jschool.data.entity.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
