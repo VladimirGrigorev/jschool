@@ -7,12 +7,14 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './component/login/login.component';
 import { StoreBranchesComponent } from './component/store-branches/store-branches.component';
+import { SparePartsComponent } from './component/spare-parts/spare-parts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    StoreBranchesComponent
+    StoreBranchesComponent,
+    SparePartsComponent
   ],
   imports: [
     BrowserModule,
