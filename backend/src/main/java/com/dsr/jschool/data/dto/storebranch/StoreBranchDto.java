@@ -1,4 +1,4 @@
-package com.dsr.jschool.data.dto;
+package com.dsr.jschool.data.dto.storebranch;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,4 +11,5 @@ public class StoreBranchDto {
 
     private Long id;
     private String address;
+    private String description;
 }

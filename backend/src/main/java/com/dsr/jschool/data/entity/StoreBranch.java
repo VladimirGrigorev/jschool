@@ -14,12 +14,8 @@ public class StoreBranch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
+    private String description;
 
-    @ManyToMany()
-    @JoinTable(
-            name = "spare_part_store_branch",
-            joinColumns = @JoinColumn(name = "spare_part_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "store_branch_id", referencedColumnName = "id")
-    )
+    @OneToMany(mappedBy = "storeBranch")
     private List<SparePart> spareParts;
 }

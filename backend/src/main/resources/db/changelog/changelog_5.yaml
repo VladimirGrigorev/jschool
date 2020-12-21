@@ -3,37 +3,18 @@ databaseChangeLog:
       id: 5
       author: vgrigorev
       changes:
-        - createTable:
-            tableName: spare_part_store_branch
+        - addColumn:
+            tableName: spare_part
             columns:
-              - column:
-                  name: id
-                  type: BIGINT
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: spare_part_id
-                  type: BIGINT
-                  constraints:
-                    nullable: false
               - column:
                   name: store_branch_id
                   type: BIGINT
                   constraints:
-                    nullable: false
+                    nullable: true
         - addForeignKeyConstraint:
             constraintName: fk_spare_part_store_branch
-            baseTableName: spare_part_store_branch
+            baseTableName: spare_part
             baseColumnNames: store_branch_id
             referencedTableName: store_branch
-            referencedColumnNames: id
-            validate: true
-        - addForeignKeyConstraint:
-            constraintName: fk_store_branch_spare_part
-            baseTableName: spare_part_store_branch
-            baseColumnNames: spare_part_id
-            referencedTableName: spare_part
             referencedColumnNames: id
             validate: true

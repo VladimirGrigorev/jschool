@@ -19,7 +19,17 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: description
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
+              - column:
                   name: count
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cost
                   type: INTEGER
                   constraints:
                     nullable: false

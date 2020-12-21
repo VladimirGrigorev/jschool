@@ -14,8 +14,11 @@ public class SparePart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
     private Integer count;
+    private Integer cost;
 
-    @ManyToMany(mappedBy = "spareParts")
-    private List<StoreBranch> storeBranches;
+    @ManyToOne()
+    @JoinColumn(name = "storeBranchId")
+    private User storeBranch;
 }
