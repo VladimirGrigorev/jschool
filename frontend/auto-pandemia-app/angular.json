@@ -65,7 +65,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "auto-pandemia-app:build"
+            "browserTarget": "auto-pandemia-app:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {

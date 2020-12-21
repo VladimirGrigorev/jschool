@@ -1,0 +1,27 @@
+<div class="container">
+  <form>
+    <label >Address</label>
+    <input [(ngModel)]="currentStoreBranch.address" type="text" id="address" name="address" placeholder="Address">
+
+    <label>Description</label>
+    <input [(ngModel)]="currentStoreBranch.description" type="text" id="descr" name="descr" placeholder="Description">
+
+    <input (click)="onSave(currentStoreBranch)" type="button" value="Save">
+    <input (click)="onClear()" type="button" value="Clear">
+  </form>
+</div>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Address</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let storeBranch of storeBranches" (click)="onSetDevice(storeBranch)">
+    <td>{{ storeBranch.id }}</td>
+    <td>{{ storeBranch.address }}</td>
+    <td>{{ storeBranch.description }}</td>
+    <td (click)="onDelete(storeBranch.id)">Delete</td>
+  </tr>
+</table>

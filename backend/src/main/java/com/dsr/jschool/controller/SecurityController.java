@@ -15,17 +15,14 @@ import java.util.Collections;
 import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
-@RequestMapping("/security")
+@RequestMapping("/api/v1/security")
 public class SecurityController {
 
-    private final PasswordEncoder passwordEncoder;
     private final UserService userService;
     private final JwtProvider jwtProvider;
 
-    public SecurityController(PasswordEncoder passwordEncoder,
-                              UserService userService,
+    public SecurityController(UserService userService,
                               JwtProvider jwtProvider) {
-        this.passwordEncoder = passwordEncoder;
         this.userService = userService;
         this.jwtProvider = jwtProvider;
     }
