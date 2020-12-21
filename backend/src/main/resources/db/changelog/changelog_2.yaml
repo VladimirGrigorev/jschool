@@ -18,3 +18,8 @@ databaseChangeLog:
                   type: VARCHAR
                   constraints:
                     nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR
+                  constraints:
+                    nullable: true
