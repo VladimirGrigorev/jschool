@@ -1,0 +1,37 @@
+<div class="container">
+  <form>
+    <label >Name</label>
+    <input [(ngModel)]="currentSparePart.name" type="text" id="name" name="name" placeholder="Name">
+
+    <label>Description</label>
+    <input [(ngModel)]="currentSparePart.description" type="text" id="descr" name="descr" placeholder="Description">
+
+    <label>Count</label>
+    <input [(ngModel)]="currentSparePart.count" type="number" id="count" name="count" placeholder="Count">
+
+    <label>Cost</label>
+    <input [(ngModel)]="currentSparePart.cost" type="number" id="cost" name="cost" placeholder="Cost">
+
+    <input (click)="onSave(currentSparePart)" type="button" value="Save">
+    <input (click)="onClear()" type="button" value="Clear">
+  </form>
+</div>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Count</th>
+    <th>Cost</th>
+    <th></th>
+  </tr>
+  <tr *ngFor="let sparePart of spareParts" (click)="onSetSparePart(sparePart)">
+    <td>{{ sparePart.id }}</td>
+    <td>{{ sparePart.name }}</td>
+    <td>{{ sparePart.description }}</td>
+    <td>{{ sparePart.count }}</td>
+    <td>{{ sparePart.cost }}</td>
+    <td (click)="onDelete(sparePart.id)">Delete</td>
+  </tr>
+</table>
