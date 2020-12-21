@@ -1,0 +1,22 @@
+databaseChangeLog:
+    - changeSet:
+          id: 103
+          author: vgrigorev
+          changes:
+              - loadData:
+                    columns:
+                        - column:
+                              header: address
+                              name: address
+                              type: STRING
+                        - column:
+                              header: description
+                              name: description
+                              type: STRING
+                    commentLineStartsWith: '#'
+                    encoding: UTF-8
+                    file: file/store-branches.csv
+                    quotchar: '"'
+                    separator: ','
+                    relativeToChangelogFile: true
+                    tableName: store_branch

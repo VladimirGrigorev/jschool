@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 104
+      author: vgrigorev
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: STRING
+              - column:
+                  header: description
+                  name: description
+                  type: STRING
+              - column:
+                  header: count
+                  name: count
+                  type: NUMERIC
+              - column:
+                  header: cost
+                  name: cost
+                  type: NUMERIC
+            commentLineStartsWith: '#'
+            encoding: UTF-8
+            file: file/spare-parts.csv
+            quotchar: '"'
+            separator: ','
+            relativeToChangelogFile: true
+            tableName: spare_part
