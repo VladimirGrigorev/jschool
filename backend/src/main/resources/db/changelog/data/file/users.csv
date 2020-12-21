@@ -1,7 +1,3 @@
-id, name, password
-1,Admin,password
-2,Brigette,password
-3,Katie,password
-4,Lauren,password
-5,Jackson,password
-6,Nate,password
+name, password
+admin,eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2b3ZhIiwicm9sZXMiOiIifQ.QGVDJaBMkMOIG2GigSrgsTvCg4yGnjaW8qMXO-2DYjpqfgYW52XgbPhg497JIKAo_Ki3sEBBolkEYfawfEWVlA
+user,eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2b3ZhIiwicm9sZXMiOiIifQ.QGVDJaBMkMOIG2GigSrgsTvCg4yGnjaW8qMXO-2DYjpqfgYW52XgbPhg497JIKAo_Ki3sEBBolkEYfawfEWVlA

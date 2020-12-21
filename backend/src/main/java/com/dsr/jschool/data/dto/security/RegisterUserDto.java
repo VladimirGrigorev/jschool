@@ -1,4 +1,4 @@
-package com.dsr.jschool.security;
+package com.dsr.jschool.data.dto.security;
 
 import lombok.Data;
 
