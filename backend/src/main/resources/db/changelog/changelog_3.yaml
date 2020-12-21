@@ -28,3 +28,8 @@ databaseChangeLog:
                   type: INTEGER
                   constraints:
                     nullable: false
+              - column:
+                  name: cost
+                  type: INTEGER
+                  constraints:
+                    nullable: false

@@ -1,4 +1,4 @@
-package com.dsr.jschool.data.dto;
+package com.dsr.jschool.data.dto.sparepart;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,5 +11,7 @@ public class SparePartDto {
 
     private Long id;
     private String name;
+    private String description;
     private Integer count;
+    private Integer cost;
 }

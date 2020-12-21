@@ -9,7 +9,7 @@ import {StoreBranchService} from "../../service/store-branch/store-branch.servic
 })
 export class StoreBranchesComponent implements OnInit {
 
-  currentStoreBranch: StoreBranch | null = null;
+  currentStoreBranch: StoreBranch = {} as StoreBranch;
   storeBranches: StoreBranch[] = [];
 
   constructor(
@@ -39,16 +39,22 @@ export class StoreBranchesComponent implements OnInit {
 
   onSave(storeBranch: StoreBranch): void {
     if (this.currentStoreBranch.id) {
-      this.storeBranchService.updateDevice(storeBranch).subscribe();
+      this.storeBranchService.updateDevice(storeBranch).subscribe(() => {
+        this.onClear();
+        this.getStoreBranches();
+      });
     } else {
-      this.storeBranchService.createStoreBranch(storeBranch).subscribe();
+      this.storeBranchService.createStoreBranch(storeBranch).subscribe(() => {
+        this.onClear();
+        this.getStoreBranches();
+      });
     }
-    this.onClear();
-    this.getStoreBranches();
   }
 
-  onDelete(deviceId: number): void {
-    this.storeBranchService.deleteDevice(deviceId).subscribe(() => this.getStoreBranches());
+
+  onDelete(deviceId: number | null): void {
+    if(deviceId != null)
+      this.storeBranchService.deleteDevice(deviceId).subscribe(() => this.getStoreBranches());
   }
 
 }

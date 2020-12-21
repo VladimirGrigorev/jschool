@@ -1,12 +1,11 @@
 package com.dsr.jschool.controller;
 
-import com.dsr.jschool.data.dto.SparePartDto;
+import com.dsr.jschool.data.dto.sparepart.CreateOrUpdateSparePartDto;
+import com.dsr.jschool.data.dto.sparepart.SparePartDto;
 import com.dsr.jschool.data.mapper.SparePartMapper;
 import com.dsr.jschool.service.SparePartService;
 import org.mapstruct.factory.Mappers;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,8 +29,28 @@ public class SparePartController {
         return sparePartMapper.sparePartToSparePartDto(sparePartService.getAllSpareParts());
     }
 
-    @GetMapping(path = "/:id")
+    @GetMapping(path = "/{id}")
     public SparePartDto getSparePart(Long id) {
         return sparePartMapper.sparePartToSparePartDto(sparePartService.getSparePart(id));
+    }
+
+    @PostMapping(path = "")
+    public SparePartDto createSparePart(@RequestBody CreateOrUpdateSparePartDto dto) {
+        var createdSparePart = sparePartService.createOrUpdateSparePart(
+                mapper.createOrUpdateSparePartDtoToSparePart(dto));
+        return mapper.sparePartToSparePartDto(createdSparePart);
+    }
+
+    @PutMapping(path = "/{id}")
+    public SparePartDto updateSparePart(
+            @PathVariable Long id,
+            @RequestBody CreateOrUpdateSparePartDto dto
+    ) {
+        return mapper.sparePartToSparePartDto(sparePartService.updateSparePart(id, dto));
+    }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteSparePart(@PathVariable Long id) {
+        sparePartService.deleteSparePartById(id);
     }
 }

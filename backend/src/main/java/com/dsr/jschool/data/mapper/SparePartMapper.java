@@ -1,6 +1,7 @@
 package com.dsr.jschool.data.mapper;
 
-import com.dsr.jschool.data.dto.SparePartDto;
+import com.dsr.jschool.data.dto.sparepart.CreateOrUpdateSparePartDto;
+import com.dsr.jschool.data.dto.sparepart.SparePartDto;
 import com.dsr.jschool.data.entity.SparePart;
 import org.mapstruct.Mapper;
 
@@ -11,4 +12,8 @@ public interface SparePartMapper{
 
     SparePartDto sparePartToSparePartDto(SparePart sparePart);
     List<SparePartDto> sparePartToSparePartDto(List<SparePart> sparePart);
+
+    SparePart createOrUpdateSparePartDtoToSparePart(CreateOrUpdateSparePartDto createOrUpdateSparePartDto);
+    List<SparePart> createOrUpdateSparePartDtoToSparePart(
+            List<CreateOrUpdateSparePartDto> createOrUpdateSparePartDto);
 }

@@ -16,6 +16,7 @@ public class SparePart {
     private String name;
     private String description;
     private Integer count;
+    private Integer cost;
 
     @ManyToOne()
     @JoinColumn(name = "storeBranchId")

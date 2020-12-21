@@ -30,7 +30,7 @@ public class UserController {
         return mapper.userToUserDto(userService.getAllUsers());
     }
 
-    @GetMapping(path = "/:id")
+    @GetMapping(path = "/{id}")
     public UserDto getUser(Long id) {
         return userMapper.userToUserDto(userService.getUser(id));
     }

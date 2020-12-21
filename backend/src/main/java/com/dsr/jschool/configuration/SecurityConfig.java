@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.http.HttpMethod.*;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 @EnableWebSecurity
@@ -28,9 +29,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/v1/users").hasRole("USER")
-                .antMatchers("/admin/*").hasRole("ADMIN")
-                .antMatchers("/security/*").anonymous()
+                .antMatchers(GET, "/api/v1/store-branches").permitAll()
+                .antMatchers(GET, "/api/v1/store-branches/*").permitAll()
+                .antMatchers(POST,"/api/v1/store-branches").hasRole("ADMIN")
+                .antMatchers(DELETE,"/api/v1/store-branches/*").hasRole("ADMIN")
+                .antMatchers(PUT,"/api/v1/store-branches/*").hasRole("ADMIN")
+                .antMatchers(GET, "/api/v1/spare-parts").permitAll()
+                .antMatchers(GET, "/api/v1/spare-parts/*").permitAll()
+                .antMatchers(POST,"/api/v1/spare-parts").hasRole("ADMIN")
+                .antMatchers(DELETE,"/api/v1/spare-parts/*").hasRole("ADMIN")
+                .antMatchers(PUT,"/api/v1/spare-parts/*").hasRole("ADMIN")
+                .antMatchers("/api/v1/security/*").anonymous()
+
                 .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
