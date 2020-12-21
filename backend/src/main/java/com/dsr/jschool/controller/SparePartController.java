@@ -3,6 +3,7 @@ package com.dsr.jschool.controller;
 import com.dsr.jschool.data.dto.SparePartDto;
 import com.dsr.jschool.data.mapper.SparePartMapper;
 import com.dsr.jschool.service.SparePartService;
+import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,8 @@ public class SparePartController {
     private final SparePartService sparePartService;
     private final SparePartMapper sparePartMapper;
 
+    private final SparePartMapper mapper = Mappers.getMapper(SparePartMapper.class);
+
     public SparePartController(SparePartService sparePartService,
                                SparePartMapper sparePartMapper) {
         this.sparePartService = sparePartService;
@@ -24,11 +27,11 @@ public class SparePartController {
 
     @GetMapping(path = "")
     public List<SparePartDto> getSpareParts() {
-        return sparePartMapper.toSparePartDto(sparePartService.getAllSpareParts());
+        return sparePartMapper.sparePartToSparePartDto(sparePartService.getAllSpareParts());
     }
 
     @GetMapping(path = "/:id")
     public SparePartDto getSparePart(Long id) {
-        return sparePartMapper.toSparePartDto(sparePartService.getSparePart(id));
+        return sparePartMapper.sparePartToSparePartDto(sparePartService.getSparePart(id));
     }
 }
