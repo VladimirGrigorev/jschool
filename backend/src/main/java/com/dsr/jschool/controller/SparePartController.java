@@ -31,7 +31,7 @@ public class SparePartController {
     }
 
     @GetMapping(path = "/{id}")
-    public SparePartWithStoreBranchDto getSparePart(Long id) {
+    public SparePartWithStoreBranchDto getSparePart(@PathVariable Long id) {
         return sparePartMapper.sparePartToSparePartWithListStoreBranchDto(sparePartService.getSparePart(id));
     }
 

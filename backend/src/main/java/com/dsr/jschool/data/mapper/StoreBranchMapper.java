@@ -2,6 +2,7 @@ package com.dsr.jschool.data.mapper;
 
 import com.dsr.jschool.data.dto.storebranch.CreateOrUpdateStoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.StoreBranchDto;
+import com.dsr.jschool.data.dto.storebranch.StoreBranchWithListSparePartDto;
 import com.dsr.jschool.data.entity.StoreBranch;
 import org.mapstruct.Mapper;
 
@@ -16,4 +17,6 @@ public interface StoreBranchMapper{
     StoreBranch createOrUpdateStoreBranchDtoToStoreBranch(CreateOrUpdateStoreBranchDto createOrUpdateStoreBranchDto);
     List<StoreBranch> createOrUpdateStoreBranchDtoToStoreBranch(
             List<CreateOrUpdateStoreBranchDto> createOrUpdateStoreBranchDto);
+
+    StoreBranchWithListSparePartDto storeBranchToStoreBranchWithListSparePartDto(StoreBranch storeBranch);
 }
