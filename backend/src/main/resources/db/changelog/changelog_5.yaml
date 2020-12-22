@@ -10,7 +10,7 @@ databaseChangeLog:
                   name: store_branch_id
                   type: BIGINT
                   constraints:
-                    nullable: true
+                    nullable: false
         - addForeignKeyConstraint:
             constraintName: fk_spare_part_store_branch
             baseTableName: spare_part

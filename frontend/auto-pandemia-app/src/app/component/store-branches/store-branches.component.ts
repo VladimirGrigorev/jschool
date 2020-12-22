@@ -33,13 +33,13 @@ export class StoreBranchesComponent implements OnInit {
     };
   }
 
-  onSetDevice(storeBranch: StoreBranch): void {
+  onSetStoreBranch(storeBranch: StoreBranch): void {
     this.currentStoreBranch = { ...storeBranch };
   }
 
   onSave(storeBranch: StoreBranch): void {
     if (this.currentStoreBranch.id) {
-      this.storeBranchService.updateDevice(storeBranch).subscribe(() => {
+      this.storeBranchService.updateStoreBranch(storeBranch).subscribe(() => {
         this.onClear();
         this.getStoreBranches();
       });
@@ -52,9 +52,9 @@ export class StoreBranchesComponent implements OnInit {
   }
 
 
-  onDelete(deviceId: number | null): void {
-    if(deviceId != null)
-      this.storeBranchService.deleteDevice(deviceId).subscribe(() => this.getStoreBranches());
+  onDelete(storeBranchId: number | null): void {
+    if(storeBranchId != null)
+      this.storeBranchService.deleteStoreBranch(storeBranchId).subscribe(() => this.getStoreBranches());
   }
 
 }

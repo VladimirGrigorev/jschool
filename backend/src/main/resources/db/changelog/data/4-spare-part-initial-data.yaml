@@ -21,6 +21,10 @@ databaseChangeLog:
                   header: cost
                   name: cost
                   type: NUMERIC
+              - column:
+                  header: store_branch_id
+                  name: store_branch_id
+                  type: NUMERIC
             commentLineStartsWith: '#'
             encoding: UTF-8
             file: file/spare-parts.csv

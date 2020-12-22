@@ -2,6 +2,7 @@ package com.dsr.jschool.service;
 
 import com.dsr.jschool.data.dto.sparepart.CreateOrUpdateSparePartDto;
 import com.dsr.jschool.data.entity.SparePart;
+import com.dsr.jschool.data.entity.StoreBranch;
 import com.dsr.jschool.data.repository.SparePartRepository;
 import com.dsr.jschool.exeption.NotFoundException;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,11 @@ import java.util.List;
 public class SparePartService {
 
     private final SparePartRepository sparePartRepository;
+    private final StoreBranchService storeBranchService;
 
-    public SparePartService(SparePartRepository sparePartRepository) {
+    public SparePartService(SparePartRepository sparePartRepository, StoreBranchService storeBranchService) {
         this.sparePartRepository = sparePartRepository;
+        this.storeBranchService = storeBranchService;
     }
 
     public List<SparePart> getAllSpareParts() {
@@ -25,10 +28,14 @@ public class SparePartService {
     }
 
     public SparePart getSparePart(Long id) {
-        return sparePartRepository.findById(id).orElseThrow();
+        return sparePartRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    public SparePart createOrUpdateSparePart(SparePart sparePart) {
+    public SparePart createOrUpdateSparePart(SparePart sparePart, Long id) {
+        if(storeBranchService.findById(id) == null)
+            throw new NotFoundException();
+        StoreBranch storeBranch = storeBranchService.findById(id);
+        sparePart.setStoreBranch(storeBranch);
         return sparePartRepository.save(sparePart);
     }
 
@@ -41,7 +48,7 @@ public class SparePartService {
         sparePartRepository.delete(sparePart);
     }
 
-    public SparePart updateSparePart(Long id, CreateOrUpdateSparePartDto dto){
+    public SparePart updateSparePart(Long id, CreateOrUpdateSparePartDto dto, Long storeBranchId){
         var sparePart = findById(id);
 
         sparePart.setName(dto.getName());
@@ -49,6 +56,10 @@ public class SparePartService {
         sparePart.setCount(dto.getCount());
         sparePart.setCount(dto.getCost());
 
-        return createOrUpdateSparePart(sparePart);
+        if(!storeBranchId.equals(sparePart.getStoreBranch().getId())) {
+            return createOrUpdateSparePart(sparePart, sparePart.getStoreBranch().getId());
+        }
+
+        return createOrUpdateSparePart(sparePart, storeBranchId);
     }
 }

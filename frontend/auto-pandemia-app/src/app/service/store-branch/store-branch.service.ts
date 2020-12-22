@@ -23,11 +23,11 @@ export class StoreBranchService {
     return this.http.post<StoreBranch>('api/v1/store-branches', storeBranch, this.buildOpts());
   }
 
-  updateDevice(storeBranch: StoreBranch): Observable<StoreBranch> {
+  updateStoreBranch(storeBranch: StoreBranch): Observable<StoreBranch> {
     return this.http.put<StoreBranch>(`api/v1/store-branches/${storeBranch.id}`, storeBranch, this.buildOpts());
   }
 
-  deleteDevice(storeBranchId: number): Observable<void> {
+  deleteStoreBranch(storeBranchId: number): Observable<void> {
     return this.http.delete<void>(`api/v1/store-branches/${storeBranchId}`, this.buildOpts());
   }
 

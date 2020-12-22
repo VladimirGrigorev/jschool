@@ -18,10 +18,10 @@
     <th>Description</th>
     <th></th>
   </tr>
-  <tr *ngFor="let storeBranch of storeBranches" (click)="onSetDevice(storeBranch)">
+  <tr *ngFor="let storeBranch of storeBranches" (click)="onSetStoreBranch(storeBranch)">
     <td>{{ storeBranch.id }}</td>
     <td>{{ storeBranch.address }}</td>
     <td>{{ storeBranch.description }}</td>
-    <td (click)="onDelete(storeBranch.id)">Delete</td>
+    <td><input (click)="onDelete(storeBranch.id)" type="button" value="Delete"></td>
   </tr>
 </table>

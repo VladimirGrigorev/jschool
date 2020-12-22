@@ -20,5 +20,5 @@ public class SparePart {
 
     @ManyToOne()
     @JoinColumn(name = "storeBranchId")
-    private User storeBranch;
+    private StoreBranch storeBranch;
 }

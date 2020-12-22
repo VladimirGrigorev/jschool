@@ -4,6 +4,7 @@ import com.dsr.jschool.data.dto.security.RegisterUserDto;
 import com.dsr.jschool.data.entity.User;
 import com.dsr.jschool.data.repository.RoleRepository;
 import com.dsr.jschool.data.repository.UserRepository;
+import com.dsr.jschool.exeption.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return userRepository.findById(id).orElseThrow();
+        return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public void registerUser(RegisterUserDto dto) {

@@ -25,7 +25,7 @@ public class StoreBranchService {
     }
 
     public StoreBranch getStoreBranch(Long id) {
-        return storeBranchRepository.findById(id).orElseThrow();
+        return storeBranchRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
     public StoreBranch createOrUpdateStoreBranch(StoreBranch storeBranch) {
