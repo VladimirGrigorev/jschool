@@ -1,0 +1,15 @@
+<div class="row">
+
+  <div class="col-12">
+    <h1>Our store branches</h1>
+    <div class="row store_branch_list_container">
+      <div *ngFor="let storeBranch of storeBranches;" class="col-5 card bg-dark text-white">
+        <div class="card-body row" routerLink="/spare-parts/{{storeBranch.id}}">
+          <a class="card-title">{{storeBranch.address}}</a>
+          <p class="card-text">{{storeBranch.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

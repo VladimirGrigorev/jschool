@@ -20,6 +20,15 @@ export class SecurityService {
 
     return this.http.post<LoginRes>('api/v1/security/login', body);
   }
+
+  register(login: string, password: string): Observable<LoginRes> {
+    let body = {
+      login,
+      password
+    };
+
+    return this.http.post<LoginRes>('api/v1/security/register', body);
+  }
 }
 
 

@@ -43,7 +43,8 @@ export class SparePartsComponent implements OnInit {
     this.currentSparePart = { ...sparePart };
   }
 
-  onSave(sparePart: SparePart, storeBranchId: number): void {
+  onSave(sparePart: SparePart, storeBranchId: number | null): void {
+    if(storeBranchId != null) {
     if (this.currentSparePart.id) {
       this.sparePartService.updateSparePart(sparePart, storeBranchId).subscribe(() => {
         this.onClear();
@@ -54,6 +55,7 @@ export class SparePartsComponent implements OnInit {
         this.onClear();
         this.getSpareParts();
       });
+    }
     }
   }
 

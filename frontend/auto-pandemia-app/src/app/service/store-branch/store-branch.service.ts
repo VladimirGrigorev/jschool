@@ -19,6 +19,10 @@ export class StoreBranchService {
     return this.http.get<StoreBranch[]>('api/v1/store-branches', this.buildOpts());
   }
 
+  getStoreBranch(storeBranchId: number): Observable<StoreBranch> {
+    return this.http.get<StoreBranch>(`api/v1/store-branches/${storeBranchId}`, this.buildOpts());
+  }
+
   createStoreBranch(storeBranch: StoreBranch): Observable<StoreBranch> {
     return this.http.post<StoreBranch>('api/v1/store-branches', storeBranch, this.buildOpts());
   }

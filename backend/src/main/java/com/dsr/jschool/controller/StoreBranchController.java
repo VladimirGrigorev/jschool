@@ -2,6 +2,7 @@ package com.dsr.jschool.controller;
 
 import com.dsr.jschool.data.dto.storebranch.CreateOrUpdateStoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.StoreBranchDto;
+import com.dsr.jschool.data.dto.storebranch.StoreBranchWithListSparePartDto;
 import com.dsr.jschool.data.mapper.StoreBranchMapper;
 import com.dsr.jschool.service.StoreBranchService;
 import org.mapstruct.factory.Mappers;
@@ -30,8 +31,8 @@ public class StoreBranchController {
     }
 
     @GetMapping(path = "/{id}")
-    public StoreBranchDto getStoreBranch(Long id) {
-        return storeBranchMapper.storeBranchToStoreBranchDto(storeBranchService.getStoreBranch(id));
+    public StoreBranchWithListSparePartDto getStoreBranch(@PathVariable Long id) {
+        return storeBranchMapper.storeBranchToStoreBranchWithListSparePartDto(storeBranchService.getStoreBranch(id));
     }
 
     @PostMapping(path = "")

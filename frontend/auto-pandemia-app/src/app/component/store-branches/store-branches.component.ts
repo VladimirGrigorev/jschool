@@ -30,6 +30,7 @@ export class StoreBranchesComponent implements OnInit {
       id: null,
       address: '',
       description: '',
+      spareParts: []
     };
   }
 

@@ -20,12 +20,6 @@ public interface SparePartMapper{
     List<SparePart> createOrUpdateSparePartDtoToSparePart(
             List<CreateOrUpdateSparePartDto> createOrUpdateSparePartDto);
 
-    @Mappings({
-            @Mapping(target="storeBranch", source="sparePart.storeBranch")
-    })
     SparePartWithStoreBranchDto sparePartToSparePartWithListStoreBranchDto(SparePart sparePart);
-    @Mappings({
-            @Mapping(target="storeBranch", source="sparePart.storeBranch")
-    })
     List<SparePartWithStoreBranchDto> sparePartToSparePartWithListStoreBranchDto(List<SparePart> sparePart);
 }

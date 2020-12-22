@@ -5,6 +5,7 @@ import com.dsr.jschool.data.mapper.UserMapper;
 import com.dsr.jschool.service.UserService;
 import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
-    public UserDto getUser(Long id) {
+    public UserDto getUser(@PathVariable Long id) {
         return userMapper.userToUserDto(userService.getUser(id));
     }
 }
