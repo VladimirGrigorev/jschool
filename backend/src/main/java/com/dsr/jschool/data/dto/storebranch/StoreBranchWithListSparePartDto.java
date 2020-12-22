@@ -14,5 +14,5 @@ public class StoreBranchWithListSparePartDto {
 
     private Long id;
     private String address;
-    private List<SparePartDto> sparePartDtos;
+    private List<SparePartDto> spareParts;
 }

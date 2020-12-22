@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SparePart} from "../../model/spare-part";
 import {SparePartService} from "../../service/spare-part/spare-part.service";
+import {StoreBranch} from "../../model/store-branch";
 
 @Component({
   selector: 'app-spare-parts',
@@ -19,10 +20,12 @@ export class SparePartsComponent implements OnInit {
   ngOnInit(): void {
     this.onClear();
     this.getSpareParts();
+    this.onClear();
   }
 
   getSpareParts(): void {
-    this.sparePartService.getSpareParts().subscribe(spareParts => this.spareParts = spareParts);
+    this.sparePartService.getSpareParts().subscribe(
+      spareParts => this.spareParts = spareParts);
   }
 
   onClear(): void {
@@ -31,7 +34,8 @@ export class SparePartsComponent implements OnInit {
       name: '',
       description: '',
       count: 0,
-      cost: 0
+      cost: 0,
+      storeBranch: {} as StoreBranch,
     };
   }
 
@@ -39,14 +43,14 @@ export class SparePartsComponent implements OnInit {
     this.currentSparePart = { ...sparePart };
   }
 
-  onSave(sparePart: SparePart): void {
+  onSave(sparePart: SparePart, storeBranchId: number): void {
     if (this.currentSparePart.id) {
-      this.sparePartService.updateSparePart(sparePart).subscribe(() => {
+      this.sparePartService.updateSparePart(sparePart, storeBranchId).subscribe(() => {
         this.onClear();
         this.getSpareParts();
       });
     } else {
-      this.sparePartService.createSparePart(sparePart).subscribe(() => {
+      this.sparePartService.createSparePart(sparePart, storeBranchId).subscribe(() => {
         this.onClear();
         this.getSpareParts();
       });

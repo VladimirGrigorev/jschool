@@ -10,11 +10,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SparePartWithListStoreBranchDto {
+public class SparePartWithStoreBranchDto {
 
     private Long id;
     private String name;
+    private String description;
     private Integer count;
     private Integer cost;
-    private List<StoreBranchDto> storeBranchDtos;
+    private StoreBranchDto storeBranch;
 }

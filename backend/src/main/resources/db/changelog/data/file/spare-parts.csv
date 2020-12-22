@@ -1,12 +1,12 @@
-name,description,count,cost
-"Nokian T430098","Nordman SX2 185/65R15 88H summer tire",3,3000
-"Cordiant 380621208","The tire is a summer Sport-PS2 3 195/65R15 91V",4,2700
-"Nokian T430101","Summer tire Nordman SX2 185/60R14 82T",5,2500
-"Viatti 3110001","Bus summer Strada Asimmetrico V-130 175/70R13 82H",2,2400
-"Michelin 777386","The summer tire Primacy of 4 205/55R16 91V",4,5000
-"Kumho 2179843","Summer tire Ecowing ES01 KH27 165/65R15 81H",2,2000
-"General Motors 93165414","Transmission oil ATF DEXRON VI, 1l",15,800
-"Hyundai/Kia 04500-00115","Synthetic transmission oil ATF SP-IV, 1l",12,850
-"Mobil 153519","Synthetic transmission oil ATF 3309, 1l",20,750
-"VAG 565 071 498 D 8Z8","Alloy wheel disc trinity 7. 0jx18",5,15000
-"Legeartis 9133325","The disk wheel is cast Concept-LR504 8x20, 5x108",3,13000
+name,description,count,cost,store_branch_id
+"Nokian T430098","Nordman SX2 185/65R15 88H summer tire",3,3000,1
+"Cordiant 380621208","The tire is a summer Sport-PS2 3 195/65R15 91V",4,2700,1
+"Nokian T430101","Summer tire Nordman SX2 185/60R14 82T",5,2500,2
+"Viatti 3110001","Bus summer Strada Asimmetrico V-130 175/70R13 82H",2,2400,3
+"Michelin 777386","The summer tire Primacy of 4 205/55R16 91V",4,5000,4
+"Kumho 2179843","Summer tire Ecowing ES01 KH27 165/65R15 81H",2,2000,1
+"General Motors 93165414","Transmission oil ATF DEXRON VI, 1l",15,800,2
+"Hyundai/Kia 04500-00115","Synthetic transmission oil ATF SP-IV, 1l",12,850,3
+"Mobil 153519","Synthetic transmission oil ATF 3309, 1l",20,750,1
+"VAG 565 071 498 D 8Z8","Alloy wheel disc trinity 7. 0jx18",5,15000,1
+"Legeartis 9133325","The disk wheel is cast Concept-LR504 8x20, 5x108",3,13000,4

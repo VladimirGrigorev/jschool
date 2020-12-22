@@ -12,7 +12,10 @@
     <label>Cost</label>
     <input [(ngModel)]="currentSparePart.cost" type="number" id="cost" name="cost" placeholder="Cost">
 
-    <input (click)="onSave(currentSparePart)" type="button" value="Save">
+    <label>StoreBranchID</label>
+    <input [(ngModel)]="currentSparePart.storeBranch.id" type="number" id="StoreBranchID" name="StoreBranchID" placeholder="StoreBranchID">
+
+    <input (click)="onSave(currentSparePart, currentSparePart.storeBranch.id)" type="button" value="Save">
     <input (click)="onClear()" type="button" value="Clear">
   </form>
 </div>
@@ -24,6 +27,7 @@
     <th>Description</th>
     <th>Count</th>
     <th>Cost</th>
+    <th>Store branch ID</th>
     <th></th>
   </tr>
   <tr *ngFor="let sparePart of spareParts" (click)="onSetSparePart(sparePart)">
@@ -32,6 +36,7 @@
     <td>{{ sparePart.description }}</td>
     <td>{{ sparePart.count }}</td>
     <td>{{ sparePart.cost }}</td>
-    <td (click)="onDelete(sparePart.id)">Delete</td>
+    <td>{{ sparePart.storeBranch.id }}</td>
+    <td><input (click)="onDelete(sparePart.id)" type="button" value="Delete"></td>
   </tr>
 </table>

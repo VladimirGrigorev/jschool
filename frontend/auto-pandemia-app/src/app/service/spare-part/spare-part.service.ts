@@ -19,12 +19,12 @@ export class SparePartService {
     return this.http.get<SparePart[]>('api/v1/spare-parts', this.buildOpts());
   }
 
-  createSparePart(sparePart: SparePart): Observable<SparePart> {
-    return this.http.post<SparePart>('api/v1/spare-parts', sparePart, this.buildOpts());
+  createSparePart(sparePart: SparePart, storeBranchId: number): Observable<SparePart> {
+    return this.http.post<SparePart>(`api/v1/spare-parts/${storeBranchId}`, sparePart, this.buildOpts());
   }
 
-  updateSparePart(sparePart: SparePart): Observable<SparePart> {
-    return this.http.put<SparePart>(`api/v1/spare-parts/${sparePart.id}`, sparePart, this.buildOpts());
+  updateSparePart(sparePart: SparePart, storeBranchId: number): Observable<SparePart> {
+    return this.http.put<SparePart>(`api/v1/spare-parts/${sparePart.id}/${storeBranchId}`, sparePart, this.buildOpts());
   }
 
   deleteSparePart(sparePartId: number): Observable<void> {

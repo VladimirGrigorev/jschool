@@ -2,6 +2,7 @@ package com.dsr.jschool.controller;
 
 import com.dsr.jschool.data.dto.sparepart.CreateOrUpdateSparePartDto;
 import com.dsr.jschool.data.dto.sparepart.SparePartDto;
+import com.dsr.jschool.data.dto.sparepart.SparePartWithStoreBranchDto;
 import com.dsr.jschool.data.mapper.SparePartMapper;
 import com.dsr.jschool.service.SparePartService;
 import org.mapstruct.factory.Mappers;
@@ -25,28 +26,30 @@ public class SparePartController {
     }
 
     @GetMapping(path = "")
-    public List<SparePartDto> getSpareParts() {
-        return sparePartMapper.sparePartToSparePartDto(sparePartService.getAllSpareParts());
+    public List<SparePartWithStoreBranchDto> getSpareParts() {
+        return sparePartMapper.sparePartToSparePartWithListStoreBranchDto(sparePartService.getAllSpareParts());
     }
 
     @GetMapping(path = "/{id}")
-    public SparePartDto getSparePart(Long id) {
-        return sparePartMapper.sparePartToSparePartDto(sparePartService.getSparePart(id));
+    public SparePartWithStoreBranchDto getSparePart(Long id) {
+        return sparePartMapper.sparePartToSparePartWithListStoreBranchDto(sparePartService.getSparePart(id));
     }
 
-    @PostMapping(path = "")
-    public SparePartDto createSparePart(@RequestBody CreateOrUpdateSparePartDto dto) {
+    @PostMapping(path = "/{storeBranchId}")
+    public SparePartDto createSparePart(@PathVariable Long storeBranchId,
+                                        @RequestBody CreateOrUpdateSparePartDto dto) {
         var createdSparePart = sparePartService.createOrUpdateSparePart(
-                mapper.createOrUpdateSparePartDtoToSparePart(dto));
+                mapper.createOrUpdateSparePartDtoToSparePart(dto), storeBranchId);
         return mapper.sparePartToSparePartDto(createdSparePart);
     }
 
-    @PutMapping(path = "/{id}")
+    @PutMapping(path = "/{id}/{storeBranchId}")
     public SparePartDto updateSparePart(
             @PathVariable Long id,
+            @PathVariable Long storeBranchId,
             @RequestBody CreateOrUpdateSparePartDto dto
     ) {
-        return mapper.sparePartToSparePartDto(sparePartService.updateSparePart(id, dto));
+        return mapper.sparePartToSparePartDto(sparePartService.updateSparePart(id, dto, storeBranchId));
     }
 
     @DeleteMapping(path = "/{id}")
