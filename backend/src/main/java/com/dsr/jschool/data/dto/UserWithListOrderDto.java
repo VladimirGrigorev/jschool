@@ -9,9 +9,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserWithListOrderDto {
 
     private Long id;
     private String name;
     private List<RoleDto> roles;
+    private List<OrderDto> orders;
 }

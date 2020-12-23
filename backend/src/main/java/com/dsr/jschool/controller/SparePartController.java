@@ -5,7 +5,6 @@ import com.dsr.jschool.data.dto.sparepart.SparePartDto;
 import com.dsr.jschool.data.dto.sparepart.SparePartWithStoreBranchDto;
 import com.dsr.jschool.data.mapper.SparePartMapper;
 import com.dsr.jschool.service.SparePartService;
-import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,30 +16,33 @@ public class SparePartController {
     private final SparePartService sparePartService;
     private final SparePartMapper sparePartMapper;
 
-    private final SparePartMapper mapper = Mappers.getMapper(SparePartMapper.class);
-
-    public SparePartController(SparePartService sparePartService,
-                               SparePartMapper sparePartMapper) {
+    public SparePartController(SparePartService sparePartService, SparePartMapper sparePartMapper) {
         this.sparePartService = sparePartService;
         this.sparePartMapper = sparePartMapper;
     }
 
-    @GetMapping(path = "")
+    @GetMapping(path = "/positive/{storeBranchId}")
+    public List<SparePartWithStoreBranchDto> getSparePartsWithPositiveCount(@PathVariable Long storeBranchId) {
+        return sparePartMapper.sparePartToSparePartWithStoreBranchDto(
+                sparePartService.getAllSparePartsWithPositiveCount(storeBranchId));
+    }
+
+    @GetMapping(path = "/all")
     public List<SparePartWithStoreBranchDto> getSpareParts() {
-        return sparePartMapper.sparePartToSparePartWithListStoreBranchDto(sparePartService.getAllSpareParts());
+        return sparePartMapper.sparePartToSparePartWithStoreBranchDto(sparePartService.getAllSpareParts());
     }
 
     @GetMapping(path = "/{id}")
     public SparePartWithStoreBranchDto getSparePart(@PathVariable Long id) {
-        return sparePartMapper.sparePartToSparePartWithListStoreBranchDto(sparePartService.getSparePart(id));
+        return sparePartMapper.sparePartToSparePartWithStoreBranchDto(sparePartService.getSparePart(id));
     }
 
     @PostMapping(path = "/{storeBranchId}")
     public SparePartDto createSparePart(@PathVariable Long storeBranchId,
                                         @RequestBody CreateOrUpdateSparePartDto dto) {
         var createdSparePart = sparePartService.createOrUpdateSparePart(
-                mapper.createOrUpdateSparePartDtoToSparePart(dto), storeBranchId);
-        return mapper.sparePartToSparePartDto(createdSparePart);
+                sparePartMapper.createOrUpdateSparePartDtoToSparePart(dto), storeBranchId);
+        return sparePartMapper.sparePartToSparePartDto(createdSparePart);
     }
 
     @PutMapping(path = "/{id}/{storeBranchId}")
@@ -49,7 +51,7 @@ public class SparePartController {
             @PathVariable Long storeBranchId,
             @RequestBody CreateOrUpdateSparePartDto dto
     ) {
-        return mapper.sparePartToSparePartDto(sparePartService.updateSparePart(id, dto, storeBranchId));
+        return sparePartMapper.sparePartToSparePartDto(sparePartService.updateSparePart(id, dto, storeBranchId));
     }
 
     @DeleteMapping(path = "/{id}")

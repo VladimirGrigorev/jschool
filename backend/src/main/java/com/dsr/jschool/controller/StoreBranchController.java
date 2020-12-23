@@ -5,7 +5,6 @@ import com.dsr.jschool.data.dto.storebranch.StoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.StoreBranchWithListSparePartDto;
 import com.dsr.jschool.data.mapper.StoreBranchMapper;
 import com.dsr.jschool.service.StoreBranchService;
-import org.mapstruct.factory.Mappers;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +15,6 @@ public class StoreBranchController {
 
     private final StoreBranchService storeBranchService;
     private final StoreBranchMapper storeBranchMapper;
-
-    private final StoreBranchMapper mapper = Mappers.getMapper(StoreBranchMapper.class);
 
     public StoreBranchController(StoreBranchService storeBranchService,
                                  StoreBranchMapper storeBranchMapper) {
@@ -38,8 +35,8 @@ public class StoreBranchController {
     @PostMapping(path = "")
     public StoreBranchDto createStoreBranch(@RequestBody CreateOrUpdateStoreBranchDto dto) {
         var createdStoreBranch = storeBranchService.createOrUpdateStoreBranch(
-                mapper.createOrUpdateStoreBranchDtoToStoreBranch(dto));
-        return mapper.storeBranchToStoreBranchDto(createdStoreBranch);
+                storeBranchMapper.createOrUpdateStoreBranchDtoToStoreBranch(dto));
+        return storeBranchMapper.storeBranchToStoreBranchDto(createdStoreBranch);
     }
 
     @PutMapping(path = "/{id}")
@@ -47,7 +44,7 @@ public class StoreBranchController {
             @PathVariable Long id,
             @RequestBody CreateOrUpdateStoreBranchDto dto
     ) {
-        return mapper.storeBranchToStoreBranchDto(storeBranchService.updateStoreBranch(id, dto));
+        return storeBranchMapper.storeBranchToStoreBranchDto(storeBranchService.updateStoreBranch(id, dto));
     }
 
     @DeleteMapping(path = "/{id}")

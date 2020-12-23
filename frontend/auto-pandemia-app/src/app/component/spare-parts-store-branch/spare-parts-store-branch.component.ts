@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {StoreBranch} from "../../model/store-branch";
+import {OrderService} from "../../service/order/order.service";
+import {SparePart} from "../../model/spare-part";
+import {ToastrService} from "ngx-toastr";
+import {SparePartService} from "../../service/spare-part/spare-part.service";
 import {StoreBranchService} from "../../service/store-branch/store-branch.service";
+import {StoreBranch} from "../../model/store-branch";
 
 @Component({
   selector: 'app-spare-parts-store-branch',
@@ -11,27 +15,51 @@ import {StoreBranchService} from "../../service/store-branch/store-branch.servic
 export class SparePartsStoreBranchComponent implements OnInit {
 
   storeBranchId: number = 1;
+  spareParts: SparePart[] = [];
   storeBranch: StoreBranch = {} as StoreBranch;
 
   constructor(
     private route: ActivatedRoute,
-    private storeBranchService: StoreBranchService
+    private sparePartService: SparePartService,
+    private storeBranchService: StoreBranchService,
+    private orderService: OrderService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.storeBranchId = params['id'];
-      this.getStoreBranchById(this.storeBranchId);
+      this.getStoreBranch(this.storeBranchId);
+      this.getSparePartsWithPositiveCount(this.storeBranchId);
     });
   }
 
-  getStoreBranchById(id: number): void {
-    this.storeBranchService.getStoreBranch(id)
-      .subscribe( storeBranch => {
-          this.storeBranch= storeBranch;
+  getSparePartsWithPositiveCount(id: number): void {
+    this.sparePartService.getSparePartsWithPositiveCount(id)
+      .subscribe( spareParts => {
+          this.spareParts = spareParts;
         },
         error => {
           console.log(error);
+        });
+  }
+
+  getStoreBranch(id: number): void {
+    this.storeBranchService.getStoreBranch(id)
+      .subscribe( storeBranch => {
+          this.storeBranch = storeBranch;
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  click(sparePart: SparePart):void {
+    if (sparePart.id != null)
+      this.orderService.buySparePart(sparePart.id).subscribe(
+        () => {
+          this.toastr.success("You have successfully purchased the spare part");
+          this.getSparePartsWithPositiveCount(this.storeBranchId);
         });
   }
 

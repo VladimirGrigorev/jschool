@@ -4,12 +4,13 @@
     <h1>Spare parts of the store's branch</h1>
     <h4>Address: {{storeBranch.address}}</h4>
     <div class="row store_branch_list_container">
-      <div *ngFor="let sparePart of storeBranch.spareParts;" class="col-5 card bg-dark text-white">
-        <div class="card-body row" routerLink="/spare-parts/:id">
+      <div *ngFor="let sparePart of spareParts;" class="col-5 card bg-dark text-white">
+        <div class="card-body row">
           <a class="col card-title">{{sparePart.name}}</a>
           <p class="col-12 card-text">{{sparePart.description}}</p>
           <p class="col-12 card-text">Count: {{sparePart.count}}</p>
           <p class="col-12 card-text">Cost: {{sparePart.cost}}</p>
+          <button type="button" class="btn btn-warning" (click)="click(sparePart)">Buy</button>
         </div>
       </div>
     </div>

@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vgrigorev
+      changes:
+        - createTable:
+            tableName: order
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: spare_part_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            constraintName: fk_order_spare_part
+            baseTableName: order
+            baseColumnNames: spare_part_id
+            referencedTableName: spare_part
+            referencedColumnNames: id
+            validate: true
+        - addForeignKeyConstraint:
+            constraintName: fk_order_user
+            baseTableName: order
+            baseColumnNames: customer_id
+            referencedTableName: user
+            referencedColumnNames: id
+            validate: true

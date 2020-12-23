@@ -21,4 +21,7 @@ public class SparePart {
     @ManyToOne()
     @JoinColumn(name = "storeBranchId")
     private StoreBranch storeBranch;
+
+    @OneToMany(mappedBy = "sparePart")
+    private List<Order> orders;
 }
