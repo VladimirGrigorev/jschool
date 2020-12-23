@@ -11,6 +11,9 @@ import { SparePartsComponent } from './component/spare-parts/spare-parts.compone
 import { StoreBranchListComponent } from './component/store-branch-list/store-branch-list.component';
 import { SparePartsStoreBranchComponent } from './component/spare-parts-store-branch/spare-parts-store-branch.component';
 import { RegisterComponent } from './component/register/register.component';
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PurchasedSparePartsComponent } from './component/purchased-spare-parts/purchased-spare-parts.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,16 @@ import { RegisterComponent } from './component/register/register.component';
     SparePartsComponent,
     StoreBranchListComponent,
     SparePartsStoreBranchComponent,
-    RegisterComponent
+    RegisterComponent,
+    PurchasedSparePartsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

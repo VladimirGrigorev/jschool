@@ -6,6 +6,7 @@ import {SparePartsComponent} from "./component/spare-parts/spare-parts.component
 import {StoreBranchListComponent} from "./component/store-branch-list/store-branch-list.component";
 import {SparePartsStoreBranchComponent} from "./component/spare-parts-store-branch/spare-parts-store-branch.component";
 import {RegisterComponent} from "./component/register/register.component";
+import {PurchasedSparePartsComponent} from "./component/purchased-spare-parts/purchased-spare-parts.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'store-branch-list', component: StoreBranchListComponent},
   {path: '', component: StoreBranchListComponent},
   {path: 'spare-parts/:id', component: SparePartsStoreBranchComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'purchased-spare-parts', component: PurchasedSparePartsComponent}
 ];
 
 @NgModule({

@@ -55,4 +55,10 @@ public class UserService {
         }
         return null;
     }
+
+    public User findByLogin(String login) {
+        if(userRepository.findByName(login) == null)
+            throw new NotFoundException();
+        return userRepository.findByName(login);
+    }
 }

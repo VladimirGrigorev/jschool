@@ -1,0 +1,18 @@
+<div class="row">
+
+  <div class="col-12">
+    <h1>Purchased spare parts</h1>
+    <h4 *ngIf="user.orders.length == 0">No purchases</h4>
+    <div class="row store_branch_list_container">
+      <div *ngFor="let order of user.orders;" class="col-5 card bg-dark text-white">
+        <div class="card-body row">
+          <a class="col card-title">{{order.sparePart.name}}</a>
+          <p class="col-12 card-text">{{order.sparePart.description}}</p>
+          <p class="col-12 card-text">Cost: {{order.sparePart.cost}}</p>
+          <p class="col-12 card-text">Order date: {{order.date}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -27,14 +27,23 @@ public class SparePartService {
         return result;
     }
 
+    public List<SparePart> getAllSparePartsWithPositiveCount(Long storeBranchId) {
+        var result = new ArrayList<SparePart>();
+        sparePartRepository.findAllByStoreBranchId(storeBranchId).forEach(sparePart -> {
+            if(sparePart.getCount() > 0)
+                result.add(sparePart);
+        });
+        return result;
+    }
+
     public SparePart getSparePart(Long id) {
         return sparePartRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    public SparePart createOrUpdateSparePart(SparePart sparePart, Long id) {
-        if(storeBranchService.findById(id) == null)
+    public SparePart createOrUpdateSparePart(SparePart sparePart, Long storeBranchId) {
+        if(storeBranchService.findById(storeBranchId) == null)
             throw new NotFoundException();
-        StoreBranch storeBranch = storeBranchService.findById(id);
+        StoreBranch storeBranch = storeBranchService.findById(storeBranchId);
         sparePart.setStoreBranch(storeBranch);
         return sparePartRepository.save(sparePart);
     }

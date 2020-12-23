@@ -5,8 +5,6 @@ import com.dsr.jschool.data.dto.sparepart.SparePartDto;
 import com.dsr.jschool.data.dto.sparepart.SparePartWithStoreBranchDto;
 import com.dsr.jschool.data.entity.SparePart;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 import java.util.List;
 
@@ -20,6 +18,6 @@ public interface SparePartMapper{
     List<SparePart> createOrUpdateSparePartDtoToSparePart(
             List<CreateOrUpdateSparePartDto> createOrUpdateSparePartDto);
 
-    SparePartWithStoreBranchDto sparePartToSparePartWithListStoreBranchDto(SparePart sparePart);
-    List<SparePartWithStoreBranchDto> sparePartToSparePartWithListStoreBranchDto(List<SparePart> sparePart);
+    SparePartWithStoreBranchDto sparePartToSparePartWithStoreBranchDto(SparePart sparePart);
+    List<SparePartWithStoreBranchDto> sparePartToSparePartWithStoreBranchDto(List<SparePart> sparePart);
 }

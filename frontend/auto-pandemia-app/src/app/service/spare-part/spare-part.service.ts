@@ -15,8 +15,12 @@ export class SparePartService {
   ) {
   }
 
+  getSparePartsWithPositiveCount(storeBranchId: number): Observable<SparePart[]> {
+    return this.http.get<SparePart[]>(`api/v1/spare-parts/positive/${storeBranchId}`, this.buildOpts());
+  }
+
   getSpareParts(): Observable<SparePart[]> {
-    return this.http.get<SparePart[]>('api/v1/spare-parts', this.buildOpts());
+    return this.http.get<SparePart[]>(`api/v1/spare-parts/all`, this.buildOpts());
   }
 
   createSparePart(sparePart: SparePart, storeBranchId: number): Observable<SparePart> {
