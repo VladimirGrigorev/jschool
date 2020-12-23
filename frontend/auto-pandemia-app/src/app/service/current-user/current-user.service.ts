@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {User} from "../../model/user";
 
 @Injectable({
   providedIn: 'root'
@@ -6,6 +7,7 @@ import { Injectable } from '@angular/core';
 export class CurrentUserService {
 
   token: string | null = null;
+  currentUser: User = {} as User;
 
   constructor() { }
 
@@ -15,6 +17,14 @@ export class CurrentUserService {
 
   getToken(): string | null {
     return this.token;
+  }
+
+  setCurrentUser(user: User): void {
+    this.currentUser = user;
+  }
+
+  getCurrentUser(): User {
+    return this.currentUser;
   }
 
   isAuthenticated(): boolean {
