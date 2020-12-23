@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.securityService.login(login, password).subscribe(res => {
       console.log(res.token);
       this.currentUserService.setToken(res.token);
-      this.securityService.setSession(res.token);
+      this.currentUserService.setSession(res.token);
       this.isAuthenticated = true;
     });
   }
