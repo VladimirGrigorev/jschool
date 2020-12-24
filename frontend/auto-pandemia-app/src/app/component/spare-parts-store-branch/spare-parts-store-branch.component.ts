@@ -61,7 +61,6 @@ export class SparePartsStoreBranchComponent implements OnInit {
       this.orderService.buySparePart(sparePart.id).subscribe(
         () => {
           this.toastr.success("You have successfully purchased the spare part");
-          this.currentUserService.getCurrentUserAfterPurchases()
           this.getSparePartsWithPositiveCount(this.storeBranchId);
         });
   }

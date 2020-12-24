@@ -22,8 +22,4 @@ export class StoreBranchListComponent implements OnInit {
   getStoreBranches(): void {
     this.storeBranchService.getStoreBranches().subscribe(storeBranches => this.storeBranches = storeBranches);
   }
-
-  click(id: number) {
-
-  }
 }

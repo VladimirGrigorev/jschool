@@ -7,40 +7,37 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 })
 export class CurrentUserService {
 
-  token: string | null = null;
-  currentUser: User = {} as User;
-
   constructor(
     private http: HttpClient
   ) {
   }
 
   setToken(token: string): void {
-    this.token = token;
+    localStorage.setItem('token', token);
   }
 
   getToken(): string | null {
-    return this.token;
+    return localStorage.getItem('token');
   }
 
   setCurrentUser(user: User): void {
-    this.currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
   getCurrentUser(): User {
-    return this.currentUser;
+    return JSON.parse(<string>localStorage.getItem('currentUser')) as User;
   }
 
-  getCurrentUserAfterPurchases(): User {
-    this.setSession(this.token)
-    return this.currentUser;
+  getUpdatedCurrentUser(): User {
+    this.setSession()
+    return this.getCurrentUser();
   }
 
   isAuthenticated(): boolean {
-    return !!this.token;
+    return !!this.getToken();
   }
 
-  public setSession(token: string | null) {
+  public setSession() {
 
     this.http.get('/api/v1/me', this.buildOpts())
       .subscribe(user => {
@@ -49,6 +46,11 @@ export class CurrentUserService {
         error => {
           console.log(error);
         });
+  }
+
+  public logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
   }
 
   private buildOpts(): object {
