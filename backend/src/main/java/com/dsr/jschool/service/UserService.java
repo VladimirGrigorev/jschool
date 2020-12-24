@@ -5,6 +5,7 @@ import com.dsr.jschool.data.entity.User;
 import com.dsr.jschool.data.repository.RoleRepository;
 import com.dsr.jschool.data.repository.UserRepository;
 import com.dsr.jschool.exeption.NotFoundException;
+import com.dsr.jschool.exeption.WrongDataException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,8 @@ public class UserService {
     }
 
     public void registerUser(RegisterUserDto dto) {
+        if(userRepository.findByName(dto.getLogin()) != null)
+            throw new WrongDataException();
         var userRole = roleRepository.findByName("ROLE_USER");
         var user = new User();
         user.setName(dto.getLogin());

@@ -17,7 +17,7 @@ export class PurchasedSparePartsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.currentUserService.getCurrentUser();
+    this.user = this.currentUserService.getUpdatedCurrentUser();
   }
 
 }

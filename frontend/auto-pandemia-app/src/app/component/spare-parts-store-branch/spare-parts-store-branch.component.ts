@@ -6,6 +6,7 @@ import {ToastrService} from "ngx-toastr";
 import {SparePartService} from "../../service/spare-part/spare-part.service";
 import {StoreBranchService} from "../../service/store-branch/store-branch.service";
 import {StoreBranch} from "../../model/store-branch";
+import {CurrentUserService} from "../../service/current-user/current-user.service";
 
 @Component({
   selector: 'app-spare-parts-store-branch',
@@ -23,6 +24,7 @@ export class SparePartsStoreBranchComponent implements OnInit {
     private sparePartService: SparePartService,
     private storeBranchService: StoreBranchService,
     private orderService: OrderService,
+    private currentUserService: CurrentUserService,
     private toastr: ToastrService
   ) { }
 

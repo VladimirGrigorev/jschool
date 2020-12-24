@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SecurityService} from "../../service/security/security.service";
 import {CurrentUserService} from "../../service/current-user/current-user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private securityService: SecurityService,
-    private currentUserService: CurrentUserService
+    private currentUserService: CurrentUserService,
+    private router: Router
   ) {
   }
 
@@ -27,8 +29,9 @@ export class LoginComponent implements OnInit {
     this.securityService.login(login, password).subscribe(res => {
       console.log(res.token);
       this.currentUserService.setToken(res.token);
-      this.securityService.setSession(res.token);
+      this.currentUserService.setSession();
       this.isAuthenticated = true;
+      this.router.navigate(['']);
     });
   }
 
