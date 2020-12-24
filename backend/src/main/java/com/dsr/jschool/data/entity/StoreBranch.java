@@ -15,6 +15,8 @@ public class StoreBranch {
     private Long id;
     private String address;
     private String description;
+    private Double x;
+    private Double y;
 
     @OneToMany(mappedBy = "storeBranch")
     private List<SparePart> spareParts;

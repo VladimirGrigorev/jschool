@@ -1,5 +1,6 @@
 package com.dsr.jschool.controller;
 
+import com.dsr.jschool.data.dto.FindOptimalStoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.CreateOrUpdateStoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.StoreBranchDto;
 import com.dsr.jschool.data.dto.storebranch.StoreBranchWithListSparePartDto;
@@ -29,7 +30,7 @@ public class StoreBranchController {
 
     @GetMapping(path = "/{id}")
     public StoreBranchWithListSparePartDto getStoreBranch(@PathVariable Long id) {
-        return storeBranchMapper.storeBranchToStoreBranchWithListSparePartDto(storeBranchService.getStoreBranch(id));
+        return storeBranchMapper.storeBranchToStoreBranchWithListSparePartDto(storeBranchService.findById(id));
     }
 
     @PostMapping(path = "")
@@ -50,5 +51,11 @@ public class StoreBranchController {
     @DeleteMapping(path = "/{id}")
     public void deleteStoreBranch(@PathVariable Long id) {
         storeBranchService.deleteStoreBranchById(id);
+    }
+
+    @GetMapping(path = "/findoptimal")
+    public StoreBranchWithListSparePartDto getOptimalStoreBranch(@RequestBody FindOptimalStoreBranchDto dto) {
+        return storeBranchMapper.storeBranchToStoreBranchWithListSparePartDto(
+                storeBranchService.findOptimalStoreBranch(dto));
     }
 }

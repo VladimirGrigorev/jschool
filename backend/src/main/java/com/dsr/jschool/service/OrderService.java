@@ -1,6 +1,5 @@
 package com.dsr.jschool.service;
 
-import com.dsr.jschool.data.dto.OrderDto;
 import com.dsr.jschool.data.entity.Order;
 import com.dsr.jschool.data.entity.SparePart;
 import com.dsr.jschool.data.repository.OrderRepository;
@@ -23,11 +22,11 @@ public class OrderService {
     }
 
     public Order buySparePart(Long sparePartId, String login) {
-        SparePart sparePart = sparePartService.getSparePart(sparePartId);
+        SparePart sparePart = sparePartService.findById(sparePartId);
         if(sparePart.getCount() - 1 >= 0){
             sparePart.setCount(sparePart.getCount() - 1);
             Order order = new Order();
-            order.setCustomer(userService.getUser(userService.findByLogin(login).getId()));
+            order.setCustomer(userService.findByLogin(login));
             order.setSparePart(sparePart);
             order.setDate(new Date());
             sparePartService.createOrUpdateSparePart(sparePart, sparePart.getStoreBranch().getId());

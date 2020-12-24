@@ -36,10 +36,6 @@ public class SparePartService {
         return result;
     }
 
-    public SparePart getSparePart(Long id) {
-        return sparePartRepository.findById(id).orElseThrow(NotFoundException::new);
-    }
-
     public SparePart createOrUpdateSparePart(SparePart sparePart, Long storeBranchId) {
         if(storeBranchService.findById(storeBranchId) == null)
             throw new NotFoundException();
@@ -63,7 +59,7 @@ public class SparePartService {
         sparePart.setName(dto.getName());
         sparePart.setDescription(dto.getDescription());
         sparePart.setCount(dto.getCount());
-        sparePart.setCount(dto.getCost());
+        sparePart.setCost(dto.getCost());
 
         if(!storeBranchId.equals(sparePart.getStoreBranch().getId())) {
             return createOrUpdateSparePart(sparePart, sparePart.getStoreBranch().getId());

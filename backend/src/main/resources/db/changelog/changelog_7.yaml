@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: vgrigorev
+      changes:
+        - addColumn:
+            tableName: store_branch
+            columns:
+              - column:
+                  name: x
+                  type: FLOAT
+                  constraints:
+                    nullable: true
+              - column:
+                  name: y
+                  type: FLOAT
+                  constraints:
+                    nullable: true
