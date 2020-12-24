@@ -38,10 +38,12 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
-    public void registerUser(RegisterUserDto dto) {
+    public void registerUser(RegisterUserDto dto, String roleName) {
         if(userRepository.findByName(dto.getLogin()) != null)
             throw new WrongDataException();
-        var userRole = roleRepository.findByName("ROLE_USER");
+        if(roleRepository.findByName(roleName) == null)
+            throw new WrongDataException();
+        var userRole = roleRepository.findByName(roleName);
         var user = new User();
         user.setName(dto.getLogin());
         user.setPassword(passwordEncoder.encode(dto.getPassword()));
