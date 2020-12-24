@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PUT,"/api/v1/spare-parts/*/*").hasRole("ADMIN")
                 .antMatchers(POST,"/api/v1/orders/buy").hasRole("USER")
                 .antMatchers(POST,"/api/v1/me").hasAnyRole("USER", "ADMIN")
+                .antMatchers(POST,"/api/v1/security/register/admin").hasRole("ADMIN")
                 .antMatchers("/api/v1/security/*").anonymous()
 
                 .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

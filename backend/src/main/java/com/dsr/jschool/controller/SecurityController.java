@@ -30,7 +30,13 @@ public class SecurityController {
     @PostMapping("/register")
     @ResponseStatus(CREATED)
     public void register(@RequestBody RegisterUserDto dto) {
-        userService.registerUser(dto);
+        userService.registerUser(dto, "ROLE_USER");
+    }
+
+    @PostMapping("/register/admin")
+    @ResponseStatus(CREATED)
+    public void registerAdmin(@RequestBody RegisterUserDto dto) {
+        userService.registerUser(dto, "ROLE_ADMIN");
     }
 
     @PostMapping("/login")
