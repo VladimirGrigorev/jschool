@@ -13,6 +13,14 @@ databaseChangeLog:
                               header: description
                               name: description
                               type: STRING
+                        - column:
+                                header: x
+                                name: x
+                                type: NUMERIC
+                        - column:
+                                header: y
+                                name: y
+                                type: NUMERIC
                     commentLineStartsWith: '#'
                     encoding: UTF-8
                     file: file/store-branches.csv

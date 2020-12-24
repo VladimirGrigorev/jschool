@@ -1,5 +1,5 @@
-address,description
-"1A Zemlyachki str., Voronezh","Types of work: muffler repair, brake system repair, automatic transmission repair, engine repair, oil change, computer diagnostics of the car, gearbox repair"
-"174 Leninsky Prospekt, Voronezh","Types of work: brake system repair, automatic transmission repair, engine repair, full service, oil change, chassis repair, starter repair, computer diagnostics of the car"
-"Ostuzheva str., 27B, Voronezh","Types of work: muffler repair, brake system repair, plastic bumper repair, engine repair, full service, oil change, undercarriage repair, starter repair"
-"3b Merkulova str., Voronezh","Types of work: brake system repair, automatic transmission repair, engine repair, full service, oil change, Parking sensors installation, chassis repair, starter repair"
+address,description,x,y
+"1A Zemlyachki str., Voronezh","Types of work: muffler repair, brake system repair, automatic transmission repair, engine repair, oil change, computer diagnostics of the car, gearbox repair",111.1,222.2
+"174 Leninsky Prospekt, Voronezh","Types of work: brake system repair, automatic transmission repair, engine repair, full service, oil change, chassis repair, starter repair, computer diagnostics of the car",222,0
+"Ostuzheva str., 27B, Voronezh","Types of work: muffler repair, brake system repair, plastic bumper repair, engine repair, full service, oil change, undercarriage repair, starter repair",0,111
+"3b Merkulova str., Voronezh","Types of work: brake system repair, automatic transmission repair, engine repair, full service, oil change, Parking sensors installation, chassis repair, starter repair",333,333

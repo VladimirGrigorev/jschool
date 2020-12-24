@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
                 .authorizeRequests()
+                .antMatchers(GET,"/api/v1/store-branches/findoptimal").hasRole("USER")
                 .antMatchers(GET, "/api/v1/store-branches").permitAll()
                 .antMatchers(GET, "/api/v1/store-branches/*").permitAll()
                 .antMatchers(POST,"/api/v1/store-branches").hasRole("ADMIN")
