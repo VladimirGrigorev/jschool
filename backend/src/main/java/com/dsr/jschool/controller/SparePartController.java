@@ -27,6 +27,8 @@ public class SparePartController {
                 sparePartService.getAllSparePartsWithPositiveCount(storeBranchId));
     }
 
+    // CR:DB: Для get all в REST не принято выделять дополнительный эндпоинт.
+    // Можно просто использовать GET /api/v1/spare-parts
     @GetMapping(path = "/all")
     public List<SparePartWithStoreBranchDto> getSpareParts() {
         return sparePartMapper.sparePartToSparePartWithStoreBranchDto(sparePartService.getAllSpareParts());

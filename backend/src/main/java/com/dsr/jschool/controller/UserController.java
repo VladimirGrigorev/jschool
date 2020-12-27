@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+// CR:DB: Нет декларации в Security Config. Может оказаться, что к этому эндпоинту имеет доступ любой пользователь
 @RequestMapping("/api/v1/users")
 public class UserController {
 

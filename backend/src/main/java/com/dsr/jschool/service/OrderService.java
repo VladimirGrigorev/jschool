@@ -23,6 +23,8 @@ public class OrderService {
 
     public Order buySparePart(Long sparePartId, String login) {
         SparePart sparePart = sparePartService.findById(sparePartId);
+        // CR:DB: С точки зрения читаемости кода было бы лучше инвернировать if-else
+        // Т.е. на < 0 бросить исключение и т.о. препвать выполнение. А иначе выполнить основную ветку
         if(sparePart.getCount() - 1 >= 0){
             sparePart.setCount(sparePart.getCount() - 1);
             Order order = new Order();
