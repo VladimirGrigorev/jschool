@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SparePartService {
@@ -29,6 +31,10 @@ public class SparePartService {
 
     public List<SparePart> getAllSparePartsWithPositiveCount(Long storeBranchId) {
         var result = new ArrayList<SparePart>();
+        // CR:DB: Не бойтесь использовать Stream API. С ним код становится красивее
+//        var result = sparePartRepository.findAllByStoreBranchId(storeBranchId).stream()
+//                .filter(part -> part.getCount() > 0)
+//                .collect(Collectors.toList());
         sparePartRepository.findAllByStoreBranchId(storeBranchId).forEach(sparePart -> {
             if(sparePart.getCount() > 0)
                 result.add(sparePart);
@@ -37,6 +43,12 @@ public class SparePartService {
     }
 
     public SparePart createOrUpdateSparePart(SparePart sparePart, Long storeBranchId) {
+        // CR:DB: Дважды образаетесь к базе с одним и темже запросом.
+        // Проблема 1: Зачем два раза спраштвать у БД одно и тоже?
+        // Можно использовать Optional (лучший вариант, на мой взгляд) или выполнить сначала запрос exists
+//        StoreBranch storeBranch = Optional.of(storeBranchService.findById(storeBranchId))
+//                .orElseThrow(NotFoundException::new);
+        // Проблема 2: Запросы не в одной транзакции. Между первым - вторым и вторым - третьим запросами запись могли удалить
         if(storeBranchService.findById(storeBranchId) == null)
             throw new NotFoundException();
         StoreBranch storeBranch = storeBranchService.findById(storeBranchId);

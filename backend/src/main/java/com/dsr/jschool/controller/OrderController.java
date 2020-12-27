@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    // CR:DB: Маппер лучше единожды проинициализировать как Bean, а потом везде подключать через DI
     private final OrderMapper mapper = Mappers.getMapper(OrderMapper.class);
 
     public OrderController(OrderService orderService) {
@@ -19,6 +20,8 @@ public class OrderController {
     }
 
     @PostMapping(path = "/buy")
+    // CR:DB: Для Request Body лучше не использовать примитивы, т.к. основной формат обмена данными
+    // в вашем приложении - json. Т.е., если параметр один, лучше обернуть его в объект.
     public OrderDto buySparePart(@RequestBody Long sparePartId, Authentication authentication) {
         String currentPrincipalName = authentication.getName();
         var order = orderService.buySparePart(sparePartId, currentPrincipalName);
